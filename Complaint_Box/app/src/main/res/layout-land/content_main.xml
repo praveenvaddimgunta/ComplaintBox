@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:orientation="vertical">
+
+    <ImageView
+        android:src="@drawable/logo"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/Did"
+        android:layout_alignParentTop="true">
+    </ImageView>
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Drainage"
+        android:id="@+id/Did"
+        android:layout_above="@+id/Gid"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Leakage"
+        android:id="@+id/button2"
+        android:layout_above="@+id/Wid"
+        android:layout_alignLeft="@+id/Wid"
+        android:layout_alignStart="@+id/Wid" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Pot holes"
+        android:id="@+id/PHid"
+        android:layout_above="@+id/PTid"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Garbage Removal"
+        android:id="@+id/Gid"
+        android:layout_above="@+id/Iid"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Water supply"
+        android:id="@+id/Wid"
+        android:layout_above="@+id/Sid"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="public toilets"
+        android:id="@+id/PTid"
+        android:layout_alignTop="@+id/Wid"
+        android:layout_alignLeft="@+id/Cid"
+        android:layout_alignStart="@+id/Cid" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="Insect Repellants"
+        android:id="@+id/Iid"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="street lights"
+        android:id="@+id/Sid"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:onClick="b1"
+        android:layout_width="100dp"
+        android:layout_height="140dp"
+        android:text="child labour"
+        android:id="@+id/Cid"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

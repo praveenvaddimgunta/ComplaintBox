@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private String mUserId;
     private String itemsUrl;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +43,13 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             loadLoginView();
         }
-
     }
+    public void b1() {
+        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+        Intent i = new Intent(this,ComplaintActivity.class);
+        startActivity(i);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,9 +69,12 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             mRef.unauth();
             loadLoginView();
+        }else if(id == R.id.action_nextintent){
+            b1();
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     private void loadLoginView() {
         Intent intent = new Intent(this, LoginActivity.class);
