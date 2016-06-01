@@ -43,53 +43,6 @@ public class MainActivity extends AppCompatActivity {
             loadLoginView();
         }
 
-        itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/items";
-
-        // Set up ListView
-        final ListView listView = (ListView) findViewById(R.id.listView);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
-        listView.setAdapter(adapter);
-
-        // Add items via the Button and EditText at the bottom of the view.
-        final EditText text = (EditText) findViewById(R.id.todoText);
-        final Button button = (Button) findViewById(R.id.addButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new Firebase(itemsUrl)
-                        .push()
-                        .child("title")
-                        .setValue(text.getText().toString());
-            }
-        });
-
-        // Use Firebase to populate the list.
-        new Firebase(itemsUrl)
-                .addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("title").getValue());
-                    }
-
-                    @Override
-                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("title").getValue());
-                    }
-
-                    @Override
-                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(FirebaseError firebaseError) {
-
-                    }
-                });
     }
 
     @Override
@@ -108,9 +61,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
-            return true;
+            mRef.unauth();
+            loadLoginView();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
