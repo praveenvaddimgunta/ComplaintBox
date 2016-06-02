@@ -27,6 +27,11 @@ public class ComplaintActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complaint);
 
+        mRef = new Firebase(Constants.FIREBASE_URL);
+        if (mRef.getAuth() == null) {
+            loadLoginView();
+        }
+
         try {
             mUserId = mRef.getAuth().getUid();
         } catch (Exception e) {
@@ -34,7 +39,7 @@ public class ComplaintActivity extends AppCompatActivity {
             System.out.println("999999999999999999999999999999999");
         }
 
-        itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/items";
+        itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/complaints";
 
         // Set up ListView
         final ListView listView = (ListView) findViewById(R.id.listView);
@@ -42,14 +47,15 @@ public class ComplaintActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
 
         // Add items via the Button and EditText at the bottom of the view.
-        final EditText text = (EditText) findViewById(R.id.complaintDescription);
+        final EditText description = (EditText) findViewById(R.id.complaintDescription);
+//        final EditText address = (EditText) findViewById(R.id.complaintAddress);
         final Button button = (Button) findViewById(R.id.addButton);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 new Firebase(itemsUrl)
                         .push()
-                        .child("title")
-                        .setValue(text.getText().toString());
+                        .child("complaint")
+                        .setValue(description.getText().toString());
             }
         });
 
@@ -58,7 +64,7 @@ public class ComplaintActivity extends AppCompatActivity {
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("title").getValue());
+                        adapter.add((String) dataSnapshot.child("complaint").getValue());
                     }
 
                     @Override
@@ -68,7 +74,7 @@ public class ComplaintActivity extends AppCompatActivity {
 
                     @Override
                     public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("title").getValue());
+                        adapter.remove((String) dataSnapshot.child("complaint").getValue());
                     }
 
                     @Override
