@@ -45,11 +45,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void b1() {
-        System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
-        Intent i = new Intent(this,ComplaintActivity.class);
+        Intent i = new Intent(MainActivity.this,ComplaintActivity.class);
         startActivity(i);
     }
-
+ 
+    public void b1(View view) {
+        Intent i = new Intent(MainActivity.this,ComplaintActivity.class);
+        startActivity(i);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

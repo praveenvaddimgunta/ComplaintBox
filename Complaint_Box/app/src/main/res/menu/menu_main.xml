@@ -9,8 +9,9 @@
         app:showAsAction="never"/>
 
     <item
-    android:id="@+id/action_nextintent"
-    android:orderInCategory="100"
-    android:title="Intent"
-    app:showAsAction="never"/>
+        android:id="@+id/action_nextintent"
+        android:orderInCategory="100"
+        android:title="Intent"
+        android:icon="@drawable/logo"
+        app:showAsAction="always"/>
 </menu>

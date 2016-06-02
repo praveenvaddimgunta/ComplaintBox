@@ -30,7 +30,8 @@ public class ComplaintActivity extends AppCompatActivity {
         try {
             mUserId = mRef.getAuth().getUid();
         } catch (Exception e) {
-            loadLoginView();
+//            loadLoginView();
+            System.out.println("999999999999999999999999999999999");
         }
 
         itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/items";
