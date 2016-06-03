@@ -9,15 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.lenovo.complaint_box.ComplaintActivity">
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:layout_below="@+id/textView"
-        android:layout_above="@+id/complaintDescription">
-    </ListView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,34 +21,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_complaint"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+
+        android:layout_below="@+id/phone"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/complaintDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Description"
-        android:layout_above="@+id/complaintAddress"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:inputType="textAutoCorrect"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/complaintAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Address"
-        android:layout_above="@+id/phone"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/complaintDescription"
+        android:inputType="textPostalAddress"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="phone"
-        android:layout_above="@+id/addButton"
+        android:inputType="phone"
+        android:layout_below="@+id/complaintAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -67,10 +62,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="MY COMPLAINTS"
+        android:text="Post your Complaint here......."
         android:id="@+id/textView"
         android:layout_below="@+id/linearLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/viewComplaints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_complaints"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/addButton"
+        android:onClick="viewComplaints" />
 
 </RelativeLayout>

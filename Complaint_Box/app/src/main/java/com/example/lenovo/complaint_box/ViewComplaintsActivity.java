@@ -1,27 +1,19 @@
 package com.example.lenovo.complaint_box;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
-import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import java.util.HashMap;
-import java.util.Map;
-
-public class ComplaintActivity extends AppCompatActivity {
+public class ViewComplaintsActivity extends AppCompatActivity {
 
     private Firebase mRef;
     private String mUserId;
@@ -30,7 +22,7 @@ public class ComplaintActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_complaint);
+        setContentView(R.layout.activity_view_complaints);
 
         mRef = new Firebase(Constants.FIREBASE_URL);
         if (mRef.getAuth() == null) {
@@ -45,31 +37,39 @@ public class ComplaintActivity extends AppCompatActivity {
 
         itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/complaints";
 
-        // Add items via the Button and EditText at the bottom of the view.
-        final EditText description = (EditText) findViewById(R.id.complaintDescription);
-        final EditText address = (EditText) findViewById(R.id.complaintAddress);
-        final EditText phone = (EditText) findViewById(R.id.phone);
-        final Button button = (Button) findViewById(R.id.addButton);
+        // Set up ListView
+        final ListView listView = (ListView) findViewById(R.id.listView);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        listView.setAdapter(adapter);
 
+        new Firebase(itemsUrl)
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        adapter.add((String) dataSnapshot.child("complaints").getValue());
+                    }
 
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                new Firebase(itemsUrl)
-                        .push()
-                        .child("complaints")
-                        .setValue("Complaint : "+description.getText().toString()+"\n\nAddress : "+address.getText().toString()+"\nContact : "+phone.getText().toString());
-                description.setText("");
-                address.setText("");
-                phone.setText("");
-            }
-        });
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 
+                    }
 
-    }
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        adapter.remove((String) dataSnapshot.child("complaint").getValue());
+                    }
 
-    public void viewComplaints(View view) {
-        Intent i = new Intent(ComplaintActivity.this,ViewComplaintsActivity.class);
-        startActivity(i);
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
+
     }
 
     @Override
