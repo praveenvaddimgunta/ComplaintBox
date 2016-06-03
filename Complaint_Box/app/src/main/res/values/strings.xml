@@ -14,4 +14,7 @@
     <string name="title_activity_login">Sign in</string>
     <string name="add_complaint">Add Complaint</string>
     <string name="action_logout">Logout</string>
+    <string name="empty_message">Please fill all the fields</string>
+
+
 </resources>

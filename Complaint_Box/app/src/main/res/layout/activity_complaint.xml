@@ -14,8 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:layout_above="@+id/complaintDescription"
-        android:layout_below="@+id/textView">
+        android:layout_below="@+id/textView"
+        android:layout_above="@+id/complaintDescription">
     </ListView>
 
     <LinearLayout
@@ -35,15 +35,6 @@
         android:layout_alignParentStart="true" />
 
     <EditText
-        android:id="@+id/complaintAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Address"
-        android:layout_above="@+id/addButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
         android:id="@+id/complaintDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +42,26 @@
         android:layout_above="@+id/complaintAddress"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/complaintAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Address"
+        android:layout_above="@+id/phone"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="phone"
+        android:layout_above="@+id/addButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
 
     <TextView
         android:layout_width="wrap_content"

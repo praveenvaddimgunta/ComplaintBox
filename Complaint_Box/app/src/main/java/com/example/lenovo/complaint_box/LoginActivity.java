@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Authenticated successfully with payload authData
                             Map<String, Object> map = new HashMap<String, Object>();
                             map.put("email", emailAddress);
-                            ref.child("users").child(authData.getUid()).setValue(map);
+                            ref.child("users").child(authData.getUid()).updateChildren(map);
 
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -1,5 +1,6 @@
 package com.example.lenovo.complaint_box;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,10 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ComplaintActivity extends AppCompatActivity {
 
@@ -35,8 +40,7 @@ public class ComplaintActivity extends AppCompatActivity {
         try {
             mUserId = mRef.getAuth().getUid();
         } catch (Exception e) {
-//            loadLoginView();
-            System.out.println("999999999999999999999999999999999");
+            loadLoginView();
         }
 
         itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/complaints";
@@ -48,14 +52,16 @@ public class ComplaintActivity extends AppCompatActivity {
 
         // Add items via the Button and EditText at the bottom of the view.
         final EditText description = (EditText) findViewById(R.id.complaintDescription);
-//        final EditText address = (EditText) findViewById(R.id.complaintAddress);
+        final EditText address = (EditText) findViewById(R.id.complaintAddress);
+        final EditText phone = (EditText) findViewById(R.id.phone);
         final Button button = (Button) findViewById(R.id.addButton);
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 new Firebase(itemsUrl)
                         .push()
-                        .child("complaint")
-                        .setValue(description.getText().toString());
+                        .child("complaints")
+                        .setValue("Complaint : "+description.getText().toString()+"\n\nAddress : "+address.getText().toString()+"\nContact : "+phone.getText().toString());
             }
         });
 
@@ -64,7 +70,7 @@ public class ComplaintActivity extends AppCompatActivity {
                 .addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        adapter.add((String) dataSnapshot.child("complaint").getValue());
+                        adapter.add((String) dataSnapshot.child("complaints").getValue());
                     }
 
                     @Override
