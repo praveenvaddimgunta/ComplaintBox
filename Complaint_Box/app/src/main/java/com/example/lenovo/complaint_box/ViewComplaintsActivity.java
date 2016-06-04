@@ -56,7 +56,7 @@ public class ViewComplaintsActivity extends AppCompatActivity {
 
                     @Override
                     public void onChildRemoved(DataSnapshot dataSnapshot) {
-                        adapter.remove((String) dataSnapshot.child("complaint").getValue());
+                        adapter.remove((String) dataSnapshot.child("complaints").getValue());
                     }
 
                     @Override

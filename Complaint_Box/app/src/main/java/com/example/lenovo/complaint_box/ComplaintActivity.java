@@ -1,6 +1,7 @@
 package com.example.lenovo.complaint_box;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
@@ -46,25 +48,41 @@ public class ComplaintActivity extends AppCompatActivity {
         itemsUrl = Constants.FIREBASE_URL + "/users/" + mUserId + "/complaints";
 
         // Add items via the Button and EditText at the bottom of the view.
-        final EditText description = (EditText) findViewById(R.id.complaintDescription);
-        final EditText address = (EditText) findViewById(R.id.complaintAddress);
-        final EditText phone = (EditText) findViewById(R.id.phone);
+        final EditText descriptionText = (EditText) findViewById(R.id.complaintDescription);
+        final EditText addressText = (EditText) findViewById(R.id.complaintAddress);
+        final EditText phoneText = (EditText) findViewById(R.id.phone);
         final Button button = (Button) findViewById(R.id.addButton);
 
 
+
         button.setOnClickListener(new View.OnClickListener() {
+            @Override
             public void onClick(View v) {
-                new Firebase(itemsUrl)
-                        .push()
-                        .child("complaints")
-                        .setValue("Complaint : "+description.getText().toString()+"\n\nAddress : "+address.getText().toString()+"\nContact : "+phone.getText().toString());
-                description.setText("");
-                address.setText("");
-                phone.setText("");
+                final String description = descriptionText.getText().toString();
+                final String address = addressText.getText().toString();
+                final String phone = phoneText.getText().toString();
+                if (description.isEmpty() || address.isEmpty() || phone.isEmpty()) {
+                    Context context = getApplicationContext();
+                    CharSequence text = "Please fill all the fields!!!!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                } else {
+                    new Firebase(itemsUrl)
+                            .push()
+                            .child("complaints")
+                            .setValue("Complaint : " + description + "\n\nAddress : " + address + "\nContact : " + phone);
+                    descriptionText.setText("");
+                    addressText.setText("");
+                    phoneText.setText("");
+                    Context context = getApplicationContext();
+                    CharSequence text = "Complaint Registered!!";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
             }
         });
-
-
     }
 
     public void viewComplaints(View view) {
