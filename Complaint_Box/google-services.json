@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "652723138225",
+    "firebase_url": "https://complaint-box-83238.firebaseio.com",
+    "project_id": "complaint-box-83238",
+    "storage_bucket": "complaint-box-83238.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:652723138225:android:24ade9b6e5daf8a7",
+        "android_client_info": {
+          "package_name": "com.example.lenovo.complaint_box"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "652723138225-e1m0qjs25b9pl88g83cscjlphkdpf01b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyButUQoXCT7boekOGNvTrcSJRonNMuMTGw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
