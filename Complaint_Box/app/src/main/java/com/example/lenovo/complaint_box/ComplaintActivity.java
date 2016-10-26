@@ -1,6 +1,5 @@
 package com.example.lenovo.complaint_box;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,17 +7,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import com.firebase.client.AuthData;
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -72,6 +64,13 @@ public class ComplaintActivity extends AppCompatActivity {
                             .push()
                             .child("complaints")
                             .setValue("Complaint : " + description + "\n\nAddress : " + address + "\nContact : " + phone);
+
+//                    Map<String, Object> map = new HashMap<String, Object>();
+//                    map.put("Compalint", description);
+//                    map.put("Address", address);
+//                    map.put("Contact", phone);
+//                    new Firebase(itemsUrl).push().child("Complaints").setValue(map);
+
                     descriptionText.setText("");
                     addressText.setText("");
                     phoneText.setText("");
