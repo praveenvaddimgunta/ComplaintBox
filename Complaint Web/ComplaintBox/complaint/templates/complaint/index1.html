@@ -1,0 +1,68 @@
+<html> 
+<head>
+  <title>Complaint Box</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	</head>	
+<body>
+  <h2>Event Details</h2>
+	<input id="username" type="text" placeholder="Event Name"><br/>
+  <br>
+  	<input id="text" type="text" placeholder="Event Location"><br/>
+    <br>
+    <input id="date" type="date" placeholder="Event Date"><br/>
+    <br>
+  	<button id="post">Submit</button><br/>
+    <br>
+	<button onclick = "printData()">View Complaints</button><br>
+  <br>
+  <button><a href="/complaint/">Logout</a></button>
+
+
+	<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+	
+<script>
+	var usersRef = new Firebase("https://compboxproject.firebaseio.com/users");
+	var eventRef = new Firebase("https://compboxevents.firebaseio.com/");
+	var usernameInput = document.querySelector('#username');
+    var textInput = document.querySelector('#text');
+    var dateInput = document.querySelector('#date');
+    var postButton = document.querySelector('#post');
+    postButton.addEventListener("click", function() {
+      var msgUser = usernameInput.value;
+      var msgText = textInput.value;
+      var msgDate = dateInput.value;
+      eventRef.push().child("events").set("Event : "+msgUser+"\nLocation : "+msgText+"\nDate : "+msgDate);
+      textInput.value = "";
+      usernameInput.value="";
+      dateInput.value="";
+     });
+    function printData() {
+        // usersRef.on("value", function (snapshot) {
+        //     console.log(snapshot.val());
+        //     document.write(snapshot.val().child('complaints'));
+        //  }, 
+        //  function (errorObject) {
+        //    console.log("The read failed: " + errorObject.code);
+        // });
+
+        usersRef.on("value", function(snapshot) {
+          console.log(snapshot.val());
+        }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        });
+    }
+
+    function events() {
+        eventsRef.on("value", function (snapshot) {
+           console.log(snapshot.val());
+           document.write(snapshot.val().events.event_name);
+        },
+        function (errorObject) {
+           console.log("The read failed: " + errorObject.code);
+        });
+    }
+	
+</script>
+
+</body>
+</html>
