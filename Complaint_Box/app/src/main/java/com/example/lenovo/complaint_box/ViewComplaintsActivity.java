@@ -72,6 +72,11 @@ public class ViewComplaintsActivity extends AppCompatActivity {
 
     }
 
+    public void b1() {
+        Intent i = new Intent(ViewComplaintsActivity.this,ComplaintActivity.class);
+        startActivity(i);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -90,6 +95,8 @@ public class ViewComplaintsActivity extends AppCompatActivity {
         if (id == R.id.action_logout) {
             mRef.unauth();
             loadLoginView();
+        }else if(id == R.id.action_nextintent){
+            b1();
         }
         return super.onOptionsItemSelected(item);
     }

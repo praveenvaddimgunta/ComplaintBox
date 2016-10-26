@@ -1,17 +1,11 @@
 package com.example.lenovo.complaint_box;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import com.firebase.client.ChildEventListener;
@@ -19,43 +13,72 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-public class MainActivity extends AppCompatActivity {
+public class EventsActivity extends AppCompatActivity {
 
     private Firebase mRef;
     private String mUserId;
+    private String itemsUrl;
+    private Firebase ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_events);
 
-        // Check Authentication
         mRef = new Firebase(Constants.FIREBASE_URL);
         if (mRef.getAuth() == null) {
             loadLoginView();
         }
+
         try {
             mUserId = mRef.getAuth().getUid();
         } catch (Exception e) {
             loadLoginView();
         }
+
+        itemsUrl = Constants.FIREBASE_URL1;
+        System.out.println("testpraveen"+itemsUrl.toString());
+
+        // Set up ListView
+        final ListView listView = (ListView) findViewById(R.id.listView2);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1);
+        listView.setAdapter(adapter);
+
+        new Firebase(itemsUrl)
+                .addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        adapter.add((String) dataSnapshot.child("events").getValue());
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+                        adapter.remove((String) dataSnapshot.child("events").getValue());
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(FirebaseError firebaseError) {
+
+                    }
+                });
     }
+
     public void b1() {
-        Intent i = new Intent(MainActivity.this,ComplaintActivity.class);
-        startActivity(i);
-    }
- 
-    public void b1(View view) {
-        Intent i = new Intent(MainActivity.this,ComplaintActivity.class);
+        Intent i = new Intent(EventsActivity.this,ComplaintActivity.class);
         startActivity(i);
     }
 
-    public void events(View view) {
-        Intent i = new Intent(MainActivity.this,EventsActivity.class);
-        startActivity(i);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     private void loadLoginView() {
         Intent intent = new Intent(this, LoginActivity.class);

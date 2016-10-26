@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         applicationId "com.example.lenovo.complaint_box"
@@ -34,5 +34,6 @@ dependencies {
     compile 'com.firebase:firebase-client-android:2.3.1'
     compile 'com.google.android.gms:play-services-wearable:9.0.2'
     compile 'com.google.android.gms:play-services-fitness:9.0.2'
+    compile 'com.google.android.gms:play-services-appindexing:9.0.2'
 }
 apply plugin: 'com.google.gms.google-services'

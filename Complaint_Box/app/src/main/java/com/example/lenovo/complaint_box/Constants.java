@@ -5,4 +5,5 @@ package com.example.lenovo.complaint_box;
  */
 public class Constants {
     public static final String FIREBASE_URL = "https://compboxproject.firebaseio.com/";
+    public static final String FIREBASE_URL1 = "https://compboxevents.firebaseio.com/";
 }

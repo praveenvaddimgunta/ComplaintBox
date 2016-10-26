@@ -13,64 +13,63 @@
     tools:showIn="@layout/activity_main"
     android:orientation="vertical">
 
-    <ImageView
-        android:src="@drawable/logo"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_above="@+id/Did">
-    </ImageView>
-
-    <Button
+    <ImageButton
+        android:src="@drawable/d1"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Drainage"
         android:id="@+id/Did"
-        android:layout_above="@+id/Gid"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d2"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Leakage"
         android:id="@+id/button2"
-        android:layout_above="@+id/Wid"
+        android:layout_below="@+id/textView2"
         android:layout_alignLeft="@+id/Wid"
         android:layout_alignStart="@+id/Wid" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d3"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Pot holes"
         android:id="@+id/PHid"
-        android:layout_above="@+id/PTid"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/PTid"
+        android:layout_alignStart="@+id/PTid" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d4"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Garbage Removal"
         android:id="@+id/Gid"
-        android:layout_above="@+id/Iid"
+        android:layout_below="@+id/Did"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d5"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Water supply"
         android:id="@+id/Wid"
-        android:layout_above="@+id/Sid"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/button2"
+        android:layout_alignLeft="@+id/Sid"
+        android:layout_alignStart="@+id/Sid" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d6"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
@@ -80,33 +79,58 @@
         android:layout_alignLeft="@+id/Cid"
         android:layout_alignStart="@+id/Cid" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d7"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="Insect Repellants"
         android:id="@+id/Iid"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Gid" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d8"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="street lights"
         android:id="@+id/Sid"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/Wid"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <ImageButton
+        android:src="@drawable/d9"
         android:onClick="b1"
         android:layout_width="100dp"
         android:layout_height="140dp"
         android:text="child labour"
         android:id="@+id/Cid"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/PTid"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <Button
+        android:onClick="events"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VIEW EVENTS IN CITY"
+        android:id="@+id/buttonEvents"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/PHid"
+        android:layout_alignEnd="@+id/PHid" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="SELECT YOUR CATEGORY"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/buttonEvents"
+        android:layout_centerHorizontal="true" />
+
 
 </RelativeLayout>

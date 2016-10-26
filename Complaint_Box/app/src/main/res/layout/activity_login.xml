@@ -40,22 +40,13 @@
         android:layout_below="@+id/passwordField"
         android:text="@string/login_button_label" />
 
-    <!--<Button-->
-        <!--android:id="@+id/loginGoogleButton"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignLeft="@+id/passwordField"-->
-        <!--android:layout_below="@+id/loginButton"-->
-        <!--android:text="LOGIN WITH GOOGLE" />-->
-
-    <TextView
+    <Button
         android:id="@+id/signUpText"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/loginButton"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="69dp"
-        android:text="@string/sign_up_text"
-        android:background="#2561dd" />
+        android:layout_marginTop="30dp"
+        android:text="@string/sign_up_text" />
 
 </RelativeLayout>
